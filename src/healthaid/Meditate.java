@@ -17,22 +17,15 @@ public class Meditate extends javax.swing.JFrame {
     /**
      * Creates new form Meditate
      */
-    static String MasterUser = "";
-     public Meditate() {
+    public Meditate() {
         initComponents();
         setLocationRelativeTo(null);
     }
 
-    public Meditate(String User) {
-        MasterUser = User;
-        initComponents();
-        setLocationRelativeTo(null);
-    }
-
-       public static final String path1 = "E:\\Java Projects\\HealthAid\\Meditate.mp3";
+       public static final String path1 = "/Users/gygshwr/NetBeansProjects/HealthAid/Meditate.mp3";
        MP3Player M1 = new MP3Player(new File(path1));
 
-       public static final String path2 = "E:\\Java Projects\\HealthAid\\MeditateTwo.mp3";
+       public static final String path2 = "/Users/gygshwr/NetBeansProjects/HealthAid/MeditateTwo.mp3";
        MP3Player M2 = new MP3Player(new File(path2));
        
        
@@ -89,7 +82,7 @@ public class Meditate extends javax.swing.JFrame {
         jLabel2.setText("Breathe In! Breathe Out!");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel3.setText("Mindfulness");
+        jLabel3.setText("Mindfullness");
 
         Stop.setBackground(new java.awt.Color(153, 255, 102));
         Stop.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -197,10 +190,7 @@ public class Meditate extends javax.swing.JFrame {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
-       M1.stop(); 
-       M2.stop();
-       
-        BootPage B = new BootPage(MasterUser);
+        Login B = new Login();
         B.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel4MouseClicked

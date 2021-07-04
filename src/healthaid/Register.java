@@ -195,6 +195,7 @@ public class Register extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(500, 700));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -312,7 +313,7 @@ public class Register extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(Check, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
@@ -363,8 +364,8 @@ public class Register extends javax.swing.JFrame {
                     
          try {
             String url = "jdbc:h2:~/test";
-            Connection C = DriverManager.getConnection(url,"sa","sa");
-             
+            Connection C = DriverManager.getConnection(url,"Healthcare","Healthcare");
+            
             
             String query = "INSERT INTO LOGIN VALUES ('"+name+"','"+user+"','"+pwd+"','"+pin+"');";
             System.out.println(query);
@@ -372,9 +373,6 @@ public class Register extends javax.swing.JFrame {
             S.executeUpdate(query);
             
                     showMessageDialog(this,"Successfully Registered!","ALERT",JOptionPane.INFORMATION_MESSAGE);
-                    Login L = new Login();
-                    L.setVisible(true);
-                    this.dispose();
                     
             C.close();
             S.close();
@@ -386,7 +384,7 @@ public class Register extends javax.swing.JFrame {
              String user = UserName.getText();
               try {
             String url = "jdbc:h2:~/test";
-            Connection C = DriverManager.getConnection(url,"sa","sa");
+            Connection C = DriverManager.getConnection(url,"Healthcare","Healthcare");
             String query = " Select count(name) from Login where username = '" +user +"';";
             System.out.println(query);
             Statement S = C.createStatement();
@@ -399,7 +397,7 @@ public class Register extends javax.swing.JFrame {
                     showMessageDialog(this, user+" is available!","ALERT",JOptionPane.INFORMATION_MESSAGE);
             else
                     showMessageDialog(this, user+ "is not available!", "ALERT",JOptionPane.ERROR_MESSAGE);
-                    
+            
             }
             
            

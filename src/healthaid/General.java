@@ -12,10 +12,6 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-import java.text.DateFormat;  
-import java.text.SimpleDateFormat;  
-import java.util.Date;  
-import java.util.Calendar;  
 import static javax.swing.JOptionPane.showMessageDialog;
 /**
  *
@@ -280,11 +276,6 @@ public class General extends javax.swing.JFrame {
     private void FinishMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FinishMouseClicked
         // TODO add your handling code here:
         
-       
-        String strDate; 
-        java.time.LocalDate today = java.time.LocalDate.now();
-        strDate = (today.toString());
-        
         String user = UserText.getText();
         float systolic = Float.parseFloat(Systolic.getText());
         float diastolic = Float.parseFloat(Diastolic.getText());
@@ -299,10 +290,10 @@ public class General extends javax.swing.JFrame {
         try {
             
               String url = "jdbc:h2:~/test";
-               Connection C = DriverManager.getConnection(url,"sa","sa");
+            Connection C = DriverManager.getConnection(url,"Healthcare","Healthcare");
             
             
-            String query = "INSERT INTO GENERAL VALUES ('"+user+ "',"+ systolic+ "," +diastolic +"," +fasting +"," +postMeal +", '" +resultBP +"','" +resultSugar +"','"+strDate+"');";
+            String query = "INSERT INTO GENERAL VALUES ('"+user+ "',"+ systolic+ "," +diastolic +"," +fasting +"," +postMeal +", '" +resultBP +"','" +resultSugar +"');";
             System.out.println(query);
             Statement S = C.createStatement();
             S.executeUpdate(query);

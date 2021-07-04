@@ -18,16 +18,7 @@ public class Positivity extends javax.swing.JFrame {
     /**
      * Creates new form Positivity
      */
-    String MasterUser;
-    
-     public Positivity() {
-     
-        initComponents();
-        setLocationRelativeTo(null);
-    }
-
-    public Positivity(String User) {
-        MasterUser = User;
+    public Positivity() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -258,7 +249,7 @@ public class Positivity extends javax.swing.JFrame {
     private void Back1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Back1MouseClicked
         // TODO add your handling code here:
         showMessageDialog(this,"\n  Never Forget,\n  This Too Shall Pass.","REMINDER",JOptionPane.INFORMATION_MESSAGE);
-        BootPage B = new BootPage(MasterUser);
+        Login B = new Login();
         B.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_Back1MouseClicked

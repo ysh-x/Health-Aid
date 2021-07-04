@@ -49,26 +49,26 @@ public class Report extends javax.swing.JFrame {
         
         if(BMI.equals("Under Weight")) {
             Set = Set + "\n\n"+BMISuggestion[0];
-            Disp.setText(Set);
-            Disp.setBackground(new Color(196,255,145));
+            BMIResult.setText(Set);
+            BMIResult.setBackground(new Color(196,255,145));
  
         }
         else if(BMI.equals("Normal")) {
             Set = Set + "\n\n"+BMISuggestion[1];
-            Disp.setText(Set); 
-             Disp.setBackground(new Color(121,255,57));
+            BMIResult.setText(Set); 
+             BMIResult.setBackground(new Color(121,255,57));
             
         }
         else if(BMI.equals("Over Weight")) { 
             Set = Set + "\n\n"+BMISuggestion[2];
-            Disp.setText(Set);
-            Disp.setBackground(new Color(235,138,62));
+            BMIResult.setText(Set);
+            BMIResult.setBackground(new Color(235,138,62));
             
         }
         else if(BMI.equals("Obese")) {
             Set = Set + "\n\n"+BMISuggestion[3];
-            Disp.setText(Set);
-            Disp.setBackground(new Color(235,65,24));
+            BMIResult.setText(Set);
+            BMIResult.setBackground(new Color(235,65,24));
             
         }
         
@@ -79,26 +79,26 @@ public class Report extends javax.swing.JFrame {
         
         if(BMI.equals("Under Weight")) {
             Set = Set + "\n\n"+BMISuggestion[0];
-            Disp.setText(Set);
-            Disp.setBackground(new Color(196,255,145));
+            BMIResult.setText(Set);
+            BMIResult.setBackground(new Color(196,255,145));
  
         }
         else if(BMI.equals("Normal")) {
             Set = Set + "\n\n"+BMISuggestion[1];
-            Disp.setText(Set); 
-             Disp.setBackground(new Color(121,255,57));
+            BMIResult.setText(Set); 
+             BMIResult.setBackground(new Color(121,255,57));
             
         }
         else if(BMI.equals("Over Weight")) { 
             Set = Set + "\n\n"+BMISuggestion[2];
-            Disp.setText(Set);
-            Disp.setBackground(new Color(235,138,62));
+            BMIResult.setText(Set);
+            BMIResult.setBackground(new Color(235,138,62));
             
         }
         else if(BMI.equals("Obese")) {
             Set = Set + "\n\n"+BMISuggestion[3];
-            Disp.setText(Set);
-            Disp.setBackground(new Color(235,65,24));
+            BMIResult.setText(Set);
+            BMIResult.setBackground(new Color(235,65,24));
             
         }
         
@@ -112,7 +112,7 @@ public class Report extends javax.swing.JFrame {
         String U = UserLabel.getText();
         try{
             String url = "jdbc:h2:~/test";
-          Connection C = DriverManager.getConnection(url,"sa","sa");
+            Connection C = DriverManager.getConnection(url,"Healthcare","Healthcare");
              String query = "Select RESULTS from BMIREPORT where username = '" +U + "';";
              System.out.println(query);
                Statement S = C.createStatement(); 
@@ -129,11 +129,8 @@ public class Report extends javax.swing.JFrame {
                 
              
             
-           C.close();
-           S.close();
+            
          } catch(SQLException E) { System.out.println(E); }
-        
-
     }
 
     /**
@@ -156,13 +153,9 @@ public class Report extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         UserLabel = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        Next = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        Disp = new javax.swing.JTextArea();
-        Analysiss = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Reduce = new javax.swing.JTextArea();
+        BMIResult = new javax.swing.JTextArea();
+        Next = new javax.swing.JButton();
 
         jPanel3.setBackground(new java.awt.Color(56, 175, 238));
 
@@ -231,6 +224,12 @@ public class Report extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("BMI");
 
+        BMIResult.setColumns(20);
+        BMIResult.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        BMIResult.setForeground(new java.awt.Color(255, 255, 255));
+        BMIResult.setRows(5);
+        jScrollPane1.setViewportView(BMIResult);
+
         Next.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Next.setText("Next");
         Next.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -239,90 +238,47 @@ public class Report extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("SMART ANALYSIS");
-
-        Disp.setColumns(20);
-        Disp.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Disp.setForeground(new java.awt.Color(255, 255, 255));
-        Disp.setRows(5);
-        jScrollPane2.setViewportView(Disp);
-
-        Analysiss.setBackground(new java.awt.Color(255, 102, 102));
-        Analysiss.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Analysiss.setText("SMART ANALYSIS");
-        Analysiss.setBorder(null);
-        Analysiss.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AnalysissMouseClicked(evt);
-            }
-        });
-
-        Reduce.setBackground(new java.awt.Color(255, 255, 102));
-        Reduce.setColumns(20);
-        Reduce.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Reduce.setRows(5);
-        jScrollPane1.setViewportView(Reduce);
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel1))
-                .addGap(9, 9, 9)
+                .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(UserLabel))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addComponent(Analysiss, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(48, 48, 48))
+                        .addComponent(UserLabel)
+                        .addGap(48, 48, 48))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(Next, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel7)))
-                .addContainerGap(167, Short.MAX_VALUE))
-            .addComponent(jScrollPane2)
-            .addComponent(jScrollPane1)
+                .addGap(149, 149, 149)
+                .addComponent(Next, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UserLabel)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel1))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel6))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Analysiss, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(UserLabel)
+                        .addComponent(jLabel5))
+                    .addComponent(jLabel1))
+                .addGap(71, 71, 71)
+                .addComponent(jLabel6)
+                .addGap(37, 37, 37)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
                 .addComponent(Next, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 57, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -346,39 +302,6 @@ public class Report extends javax.swing.JFrame {
        this.dispose();
     }//GEN-LAST:event_NextMouseClicked
 
-    private void AnalysissMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AnalysissMouseClicked
-        // TODO add your handling code here:
-         String U = UserLabel.getText();
-        
-        try{
-            String url = "jdbc:h2:~/test";
-            Connection C = DriverManager.getConnection(url,"sa","sa");
-            String query = "Select WEIGHT,HEIGHT from BMIREPORT where username = '" +U + "';";
-            System.out.println(query);
-            Statement S = C.createStatement();
-            ResultSet RS = S.executeQuery(query);
-
-            while(RS.next()) {
-
-                float Height = RS.getFloat("HEIGHT");
-                float Weight = RS.getFloat("WEIGHT");
-
-                float Actual = (24.9f * (Height/100) * (Height/100));
-                float Difference = Weight - Actual;
-
-                String Disp = "\n"+"  Your Actual Weight is supposed to be "+Float.toString(Actual)+
-                " Kg(s) \n" + "  You have to reduce "+Float.toString(Difference)+" Kg(s)\n";
-
-                Reduce.setText(Disp);
-            }
-              C.close();
-           S.close();
-        }
-        catch(SQLException E) {
-            System.out.println(E);
-        }
-    }//GEN-LAST:event_AnalysissMouseClicked
-  
     /**
      * @param args the command line arguments
      */
@@ -415,10 +338,8 @@ public class Report extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Analysiss;
-    private javax.swing.JTextArea Disp;
+    private javax.swing.JTextArea BMIResult;
     private javax.swing.JButton Next;
-    private javax.swing.JTextArea Reduce;
     private javax.swing.JLabel UserLabel;
     private javax.swing.JLabel UserText;
     private javax.swing.JLabel jLabel1;
@@ -427,11 +348,9 @@ public class Report extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

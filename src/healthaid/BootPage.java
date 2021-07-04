@@ -5,14 +5,6 @@
  */
 package healthaid;
 
-import java.awt.Desktop;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author gygshwr
@@ -22,9 +14,7 @@ public class BootPage extends javax.swing.JFrame {
     /**
      * Creates new form BootPage
      */
-     String MasterUser = new String();
     public BootPage() {
-        MasterUser = user;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -32,11 +22,10 @@ public class BootPage extends javax.swing.JFrame {
     String user;
     
     public BootPage(String user) {
-        MasterUser = user;
+        
         initComponents();
-        UserLabel.setText(MasterUser);
         setLocationRelativeTo(null);
-      
+        UserLabel.setText(user);
         
     }
 
@@ -60,11 +49,8 @@ public class BootPage extends javax.swing.JFrame {
         Positivity = new javax.swing.JButton();
         History = new javax.swing.JButton();
         Exit = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        COVID = new javax.swing.JLabel();
         UserLabel = new javax.swing.JLabel();
-        Hello = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(56, 175, 238));
 
@@ -166,7 +152,7 @@ public class BootPage extends javax.swing.JFrame {
 
         Exit.setBackground(new java.awt.Color(255, 51, 51));
         Exit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Exit.setText("Log Out");
+        Exit.setText("Exit");
         Exit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         Exit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -174,54 +160,21 @@ public class BootPage extends javax.swing.JFrame {
             }
         });
 
-        jPanel3.setBackground(new java.awt.Color(56, 175, 238));
+        UserLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        UserLabel.setText("jLabel1");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setText("Your Health Partner");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(151, 151, 151)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addContainerGap())
-        );
-
-        COVID.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        COVID.setForeground(new java.awt.Color(51, 153, 0));
-        COVID.setText("Covid - 19 DashBoard");
-        COVID.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                COVIDMouseClicked(evt);
-            }
-        });
-
-        UserLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        UserLabel.setForeground(new java.awt.Color(51, 204, 255));
-        UserLabel.setText("User");
-
-        Hello.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        Hello.setText("Welcome,");
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("Welcome,");
 
         javax.swing.GroupLayout BootPanelLayout = new javax.swing.GroupLayout(BootPanel);
         BootPanel.setLayout(BootPanelLayout);
         BootPanelLayout.setHorizontalGroup(
             BootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(BootPanelLayout.createSequentialGroup()
                 .addGroup(BootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(BootPanelLayout.createSequentialGroup()
-                        .addGap(79, 79, 79)
+                        .addGap(77, 77, 77)
                         .addGroup(BootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, BootPanelLayout.createSequentialGroup()
                                 .addComponent(History, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -234,13 +187,10 @@ public class BootPage extends javax.swing.JFrame {
                                 .addGap(27, 27, 27)
                                 .addGroup(BootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(Results, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Positivity, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(BootPanelLayout.createSequentialGroup()
-                                .addComponent(COVID)
-                                .addGap(44, 44, 44))))
+                                    .addComponent(Positivity, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(BootPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Hello)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(UserLabel)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -249,13 +199,11 @@ public class BootPage extends javax.swing.JFrame {
             BootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BootPanelLayout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(35, 35, 35)
                 .addGroup(BootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Hello)
+                    .addComponent(jLabel3)
                     .addComponent(UserLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(COVID)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(27, 27, 27)
                 .addGroup(BootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Take, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Results, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -267,8 +215,7 @@ public class BootPage extends javax.swing.JFrame {
                 .addGroup(BootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(History, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -287,14 +234,14 @@ public class BootPage extends javax.swing.JFrame {
 
     private void MinfulnessMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinfulnessMouseClicked
         // TODO add your handling code here:
-        Meditate M = new Meditate(MasterUser);
+        Meditate M = new Meditate();
         M.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_MinfulnessMouseClicked
 
     private void PositivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PositivityMouseClicked
         // TODO add your handling code here:
-        Positivity P = new Positivity(MasterUser);
+        Positivity P = new Positivity();
         P.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_PositivityMouseClicked
@@ -302,54 +249,33 @@ public class BootPage extends javax.swing.JFrame {
     private void TakeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TakeMouseClicked
         // TODO add your handling code here:
         
-      
-        BMI B = new BMI(MasterUser);
+        user = UserLabel.getText();
+        BMI B = new BMI();
         B.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_TakeMouseClicked
 
     private void HistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HistoryMouseClicked
         // TODO add your handling code here:
-        
-        History H = new History(MasterUser);
+        user = UserLabel.getText();
+        History H = new History(user);
         H.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_HistoryMouseClicked
 
     private void ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseClicked
         // TODO add your handling code here:
-        int result = JOptionPane.showConfirmDialog(this,"Sure? You want to exit?", "Confirm LogOut",
-               JOptionPane.YES_NO_OPTION,
-               JOptionPane.QUESTION_MESSAGE);
-        
-        if(result == JOptionPane.YES_OPTION) {
-        Login L = new Login();
-        L.setVisible(true);
         this.dispose();
-        }
-        
     }//GEN-LAST:event_ExitMouseClicked
 
     private void ResultsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ResultsMouseClicked
         // TODO add your handling code here:
-        
-        ReportCheck R = new ReportCheck(MasterUser);
+        String user = UserLabel.getText();
+        ReportCheck R = new ReportCheck(user);
         R.setVisible(true);
         this.dispose();
         
     }//GEN-LAST:event_ResultsMouseClicked
-
-    private void COVIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_COVIDMouseClicked
-        // TODO add your handling code here:
-        Desktop d = Desktop.getDesktop();
-         try {
-             d.browse(new URI("https://www.covid19india.org/"));
-         } catch (URISyntaxException ex) {
-             Logger.getLogger(BootPage.class.getName()).log(Level.SEVERE, null, ex);
-         } catch (IOException ex) {
-             Logger.getLogger(BootPage.class.getName()).log(Level.SEVERE, null, ex);
-         }
-    }//GEN-LAST:event_COVIDMouseClicked
 
     /**
      * @param args the command line arguments
@@ -388,9 +314,7 @@ public class BootPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BootPanel;
-    private javax.swing.JLabel COVID;
     private javax.swing.JButton Exit;
-    private javax.swing.JLabel Hello;
     private javax.swing.JButton History;
     private javax.swing.JButton Minfulness;
     private javax.swing.JButton Positivity;
@@ -399,9 +323,8 @@ public class BootPage extends javax.swing.JFrame {
     private javax.swing.JLabel UserLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }
