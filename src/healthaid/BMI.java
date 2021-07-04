@@ -6,27 +6,39 @@
 package healthaid;
 
 
+
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;    
+import java.util.Date;  
 import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
  * @author gygshwr
  */
+
+
 public class BMI extends javax.swing.JFrame {
 
     /**
      * Creates new form BMI
      */
-    public BMI() {
+    static String MasterUser = "";
+    public BMI(String User) {
+        MasterUser = User;
         initComponents();
+        UserName.setText(MasterUser);
         setLocationRelativeTo(null);
     }
+    
+    
 
     public String BMIResults(float BMI) {
         
@@ -145,6 +157,7 @@ public class BMI extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("UserName");
 
+        UserName.setEditable(false);
         UserName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         UserName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         UserName.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(56, 175, 238), 1, true));
@@ -281,14 +294,16 @@ public class BMI extends javax.swing.JFrame {
 
     private void BackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackMouseClicked
         // TODO add your handling code here:
-        BootPage B = new BootPage();
+        BootPage B1 = new BootPage();
+        BootPage B = new BootPage(B1.user);
         B.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BackMouseClicked
 
     private void NextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NextMouseClicked
         // TODO add your handling code here:
-        String user = UserName.getText();
+        String user = MasterUser;
+       
         String age = Age.getText();
         float height = Float.parseFloat(Height.getText());
         float weight = Float.parseFloat(Weight.getText());
@@ -300,7 +315,7 @@ public class BMI extends javax.swing.JFrame {
         
         try {
              String url = "jdbc:h2:~/test";
-            Connection C = DriverManager.getConnection(url,"Healthcare","Healthcare");
+            Connection C = DriverManager.getConnection(url,"sa","sa");
             String query = "INSERT INTO BMIREPORT VALUES ('" +user
                                                             +"'," +age +","
                                                             +Float.toString(height) 
@@ -351,7 +366,7 @@ public class BMI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BMI().setVisible(true);
+                new BMI(MasterUser).setVisible(true);
             }
         });
     }

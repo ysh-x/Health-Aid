@@ -31,7 +31,7 @@ public class ReportFinal extends javax.swing.JFrame {
        
     public String BPResults[] = { "\n   Low Mean Arterial Pressure\n\n   This could be a possible sign of\n   Stroke or Internal Bleeding\n   Consult an Doctor Immediately",
                                   "\n   Normal Mean Arterial Pressure\n\n   Your average blood pressure in the body is normal\n",
-                                  "\n   High Mean Arterial Pressure\n\n   This could be a cause an heart attack or organ failure \n   Consult an Doctor immediately"
+                                  "\n   High Mean Arterial Pressure\n\n   This could cause an heart attack or organ failure \n   Consult an Doctor immediately"
         
     };
     public String SugarResults[] = { "\n   Non - Diabetes\n\n   Your blood results show no sign of diabetes\n   Drink plenty of water\n",
@@ -108,7 +108,7 @@ public class ReportFinal extends javax.swing.JFrame {
              
              String U = UserLabel.getText();
               String url = "jdbc:h2:~/test";
-            Connection C = DriverManager.getConnection(url,"Healthcare","Healthcare");
+           Connection C = DriverManager.getConnection(url,"sa","sa");
              String query = "Select * from GENERAL where username = '" +U + "';";
              System.out.println(query);
                Statement S = C.createStatement(); 
@@ -154,6 +154,7 @@ public class ReportFinal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         BPResult = new javax.swing.JTextArea();
         Exit = new javax.swing.JButton();
+        UsefulLinks = new javax.swing.JButton();
 
         jPanel4.setBackground(new java.awt.Color(56, 175, 238));
 
@@ -241,12 +242,22 @@ public class ReportFinal extends javax.swing.JFrame {
             }
         });
 
+        UsefulLinks.setBackground(new java.awt.Color(102, 255, 51));
+        UsefulLinks.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        UsefulLinks.setText("Know More");
+        UsefulLinks.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UsefulLinksMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,11 +274,12 @@ public class ReportFinal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(154, 154, 154)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(UsefulLinks, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(55, 55, 55))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,9 +298,11 @@ public class ReportFinal extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Exit, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                .addGap(18, 18, 18))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Exit, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(UsefulLinks, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -313,6 +327,13 @@ public class ReportFinal extends javax.swing.JFrame {
         B.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_ExitMouseClicked
+
+    private void UsefulLinksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsefulLinksMouseClicked
+        // TODO add your handling code here:
+        Links L = new Links();
+        L.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_UsefulLinksMouseClicked
 
     /**
      * @param args the command line arguments
@@ -353,6 +374,7 @@ public class ReportFinal extends javax.swing.JFrame {
     private javax.swing.JTextArea BPResult;
     private javax.swing.JButton Exit;
     private javax.swing.JTextArea SugarResult;
+    private javax.swing.JButton UsefulLinks;
     private javax.swing.JLabel UserLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

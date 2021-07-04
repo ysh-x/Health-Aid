@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import java.io.FileWriter; 
 import static javax.swing.JOptionPane.showInputDialog;
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -31,41 +32,45 @@ public class History extends javax.swing.JFrame {
     
     public History() {
         initComponents();
+        setLocationRelativeTo(null);
          
     }
-    
+    String MasterUser;
+    String BPRes = "" ;
     public History(String user) {
+        MasterUser = user;
         initComponents();
-        UserLabel.setText(user);
+        UserLabel1.setText(user);
         setLocationRelativeTo(null);
         
-        try {
-            String U = UserLabel.getText();
-              String url = "jdbc:h2:~/test";
-            Connection C = DriverManager.getConnection(url,"Healthcare","Healthcare");
-             String query = "Select RESULTBP, RESULTSUGAR from GENERAL where username = '" +U + "';";
-             
-             System.out.println(query);
-               Statement S = C.createStatement(); 
-                ResultSet RS = S.executeQuery(query);
-                String BPRes = "" ;
-                int count =  1;
-                 while(RS.next()) 
-                    {
-                        String BP = RS.getString("RESULTBP");
-                        String Sugar = RS.getString("RESULTSUGAR");
-                        
-                        BPRes = BPRes + count + "\t"+ BP +"\t "+ Sugar +"\n";
-                        count++;
-                       
-                    }
-                 History.setText(BPRes);
-               
+         try {
+            String U = MasterUser;
+            String url = "jdbc:h2:~/test";
+            Connection C = DriverManager.getConnection(url,"sa","sa");
+            String query = "Select DATE, RESULTBP, RESULTSUGAR from GENERAL where username = '" +U + "';";
+
+            System.out.println(query);
+            Statement S = C.createStatement();
+            ResultSet RS = S.executeQuery(query);
+            
+            int count =  1;
+            while(RS.next())
+            {
+                String BP = RS.getString("RESULTBP");
+                String Sugar = RS.getString("RESULTSUGAR");
+                String Date = RS.getString("DATE");
+
+                BPRes = BPRes + Date + "\t"+ BP +"\t"+ Sugar +"\n";
+                count++;
+
+            }
+            History.setText(BPRes);
+
         } catch(SQLException E) {
-            System.out.println(E); 
-    }
-        
-        
+            System.out.println(E);
+        }
+
+   
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,19 +84,20 @@ public class History extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jMenu1 = new javax.swing.JMenu();
+        Hello = new javax.swing.JLabel();
+        UserLabel = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        UserLabel = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         History = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
+        Exit = new javax.swing.JButton();
+        Hello1 = new javax.swing.JLabel();
+        UserLabel1 = new javax.swing.JLabel();
+        Download = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(56, 175, 238));
 
@@ -117,6 +123,13 @@ public class History extends javax.swing.JFrame {
 
         jMenu1.setText("jMenu1");
 
+        Hello.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        Hello.setText("Welcome,");
+
+        UserLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        UserLabel.setForeground(new java.awt.Color(51, 204, 255));
+        UserLabel.setText("User");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -133,7 +146,7 @@ public class History extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(119, 119, 119)
                 .addComponent(jLabel3)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,15 +155,6 @@ public class History extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(17, Short.MAX_VALUE))
         );
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Welcome,");
-
-        UserLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        UserLabel.setText("jLabel1");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel5.setText("History");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Blood Sugar");
@@ -167,86 +171,88 @@ public class History extends javax.swing.JFrame {
         History.setRows(6);
         jScrollPane2.setViewportView(History);
 
-        jButton1.setBackground(new java.awt.Color(255, 102, 102));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton1.setText("Exit");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        Exit.setBackground(new java.awt.Color(255, 102, 102));
+        Exit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Exit.setText("Exit");
+        Exit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                ExitMouseClicked(evt);
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel8.setText("Past Results");
+        Hello1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        Hello1.setText("History of");
+
+        UserLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        UserLabel1.setForeground(new java.awt.Color(51, 204, 255));
+        UserLabel1.setText("User");
+
+        Download.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Download.setForeground(new java.awt.Color(255, 51, 102));
+        Download.setText("Download History");
+        Download.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DownloadMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane2)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(UserLabel)
-                        .addGap(30, 30, 30))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(47, 47, 47)
-                        .addComponent(jLabel7)
-                        .addGap(44, 44, 44)
-                        .addComponent(jLabel4)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(46, 46, 46)
+                .addComponent(jLabel4)
+                .addGap(102, 102, 102))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(141, 141, 141)
+                        .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel8)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(Hello1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(UserLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Download)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(UserLabel)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)))
-                .addGap(2, 2, 2)
-                .addComponent(jLabel8)
-                .addGap(72, 72, 72)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                    .addComponent(Hello1)
+                    .addComponent(UserLabel1))
+                .addGap(13, 13, 13)
+                .addComponent(Download)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel6))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,12 +262,27 @@ public class History extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseClicked
         // TODO add your handling code here:
-        Login L = new Login();
-        L.setVisible(true);
+         BootPage B = new BootPage(MasterUser);
+        B.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_ExitMouseClicked
+
+    private void DownloadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DownloadMouseClicked
+        // TODO add your handling code here:
+         try{    
+
+            String Intro = "History of " + MasterUser +"\nThe following report is generated by HealthAid Application\n\n\n\n";
+            String path = "C:\\Users\\gygsh\\OneDrive\\Desktop" + "\\" + "HistoryOf"+MasterUser+".txt";
+            FileWriter fw = new FileWriter(path);   
+            BPRes = Intro + BPRes;
+            fw.write(BPRes);    
+            fw.close();    
+           }catch(Exception e)
+           {System.out.println(e);} 
+         showMessageDialog(this,"\t\tDownload Successful.\n\t\tCheck Desktop","Successful",JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_DownloadMouseClicked
 
     /**
      * @param args the command line arguments
@@ -299,17 +320,18 @@ public class History extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Download;
+    private javax.swing.JButton Exit;
+    private javax.swing.JLabel Hello;
+    private javax.swing.JLabel Hello1;
     private javax.swing.JTextArea History;
     private javax.swing.JLabel UserLabel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel UserLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

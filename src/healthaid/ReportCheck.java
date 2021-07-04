@@ -238,7 +238,7 @@ public class ReportCheck extends javax.swing.JFrame {
             
             
              String url = "jdbc:h2:~/test";
-            Connection C = DriverManager.getConnection(url,"Healthcare","Healthcare");
+         Connection C = DriverManager.getConnection(url,"sa","sa");
             
                String query = "Select count(*) from Login where username = '"+userN+"' and "+" PIN = '"+pin+"';";
                System.out.println(query);

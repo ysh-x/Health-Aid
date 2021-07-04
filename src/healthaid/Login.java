@@ -26,7 +26,7 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    String user;
+    String user = new String();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,11 +47,13 @@ public class Login extends javax.swing.JFrame {
         SignUpLink = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        About = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setName("LoginFrame"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(500, 700));
 
         LoginPanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -122,29 +124,66 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jPanel2.setBackground(new java.awt.Color(56, 175, 238));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setText("Your Health Partner");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(151, 151, 151)
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addContainerGap())
+        );
+
+        About.setIcon(new javax.swing.ImageIcon("E:\\Java Projects\\HealthAid\\Resources\\About.png")); // NOI18N
+        About.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AboutMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout LoginPanelLayout = new javax.swing.GroupLayout(LoginPanel);
         LoginPanel.setLayout(LoginPanelLayout);
         LoginPanelLayout.setHorizontalGroup(
             LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(LoginPanelLayout.createSequentialGroup()
-                .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginPanelLayout.createSequentialGroup()
+                .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(LoginPanelLayout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(LoginPanelLayout.createSequentialGroup()
+                                .addComponent(SignUpLink)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(About))))
                     .addGroup(LoginPanelLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(SignUpLink)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel2)
                                 .addComponent(PassWord, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
-                                .addComponent(UserName))
+                                .addComponent(UserName)
+                                .addGroup(LoginPanelLayout.createSequentialGroup()
+                                    .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel2))
+                                    .addGap(90, 90, 90)))
                             .addGroup(LoginPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(LoginPanelLayout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(35, 35, 35))
         );
         LoginPanelLayout.setVerticalGroup(
@@ -163,11 +202,14 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(PassWord, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
+                .addGap(60, 60, 60)
                 .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addComponent(SignUpLink)
-                .addGap(53, 53, 53))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SignUpLink, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(About, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -188,7 +230,7 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
  try {
              String url = "jdbc:h2:~/test";
-            Connection C = DriverManager.getConnection(url,"Healthcare","Healthcare");
+            Connection C = DriverManager.getConnection(url,"sa","sa");
        
             user = UserName.getText();
             String pwd = PassWord.getText();
@@ -201,8 +243,8 @@ public class Login extends javax.swing.JFrame {
             if(RS.getInt("count(*)") != 0 ) {
                     showMessageDialog(this,"\t\t Welcome, "+name,"Login Successful",JOptionPane.INFORMATION_MESSAGE);
                     BootPage B = new BootPage(user);
-                    this.dispose();
                     B.setVisible(true);
+                    this.dispose();
                 }
             else {
                     showMessageDialog(this,"\t\t Wrong username or Password","Login Unsuccessful",JOptionPane.ERROR_MESSAGE);
@@ -226,6 +268,13 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_SignUpLinkMouseClicked
+
+    private void AboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AboutMouseClicked
+        // TODO add your handling code here:
+         About B = new About();
+        B.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_AboutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -263,6 +312,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel About;
     private javax.swing.JButton Login;
     private javax.swing.JPanel LoginPanel;
     private javax.swing.JPasswordField PassWord;
@@ -272,7 +322,9 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
