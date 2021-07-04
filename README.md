@@ -1,6 +1,6 @@
 # Health-Aid
 
-Health Aid The proposal is a smart diagnostic tool that can diagnose/identify the possible
+- Health Aid is a smart diagnostic tool that can diagnose/identify the possible
 health conditions the person may have or is likely to possess in the near
 future.
 A framework/database is built with all the common health conditions and the
@@ -9,7 +9,7 @@ The software gets input from the user such as height, weight, gender, age,
 lifestyle, food intake, and much more.
 
 
-Based on the inputs and the symptoms that user’s experience. The application
+- Based on the inputs and the symptoms that user’s experience. The application
 analyses the user data with the help of the built framework and provides the
 insights under four different categories as mentioned below
 1. The health conditions
@@ -33,7 +33,7 @@ People can track for COVID - 19 at their locations and check their health status
 You can get instant results by checking your symptoms in a smart diagnosis
 software.
 
--Now patients can use diagnosis app to monitor their sugar levels or blood
+- Now patients can use diagnosis app to monitor their sugar levels or blood
 pressure and transmit this data to their healthcare providers in real-time. This
 allows them to maintain a regular record of their patients’ health without much
 effort, and to detect anomalies or deviations. It can also be used as a tool of
