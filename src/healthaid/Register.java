@@ -364,7 +364,7 @@ public class Register extends javax.swing.JFrame {
                     
          try {
             String url = "jdbc:h2:~/test";
-            Connection C = DriverManager.getConnection(url,"Healthcare","Healthcare");
+            Connection C = DriverManager.getConnection(url,"sa","sa");
             
             
             String query = "INSERT INTO LOGIN VALUES ('"+name+"','"+user+"','"+pwd+"','"+pin+"');";

@@ -300,7 +300,7 @@ public class BMI extends javax.swing.JFrame {
         
         try {
              String url = "jdbc:h2:~/test";
-            Connection C = DriverManager.getConnection(url,"Healthcare","Healthcare");
+            Connection C = DriverManager.getConnection(url,"sa","sa");
             String query = "INSERT INTO BMIREPORT VALUES ('" +user
                                                             +"'," +age +","
                                                             +Float.toString(height) 

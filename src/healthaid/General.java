@@ -290,7 +290,7 @@ public class General extends javax.swing.JFrame {
         try {
             
               String url = "jdbc:h2:~/test";
-            Connection C = DriverManager.getConnection(url,"Healthcare","Healthcare");
+            Connection C = DriverManager.getConnection(url,"sa","sa");
             
             
             String query = "INSERT INTO GENERAL VALUES ('"+user+ "',"+ systolic+ "," +diastolic +"," +fasting +"," +postMeal +", '" +resultBP +"','" +resultSugar +"');";

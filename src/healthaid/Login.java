@@ -188,7 +188,7 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
  try {
              String url = "jdbc:h2:~/test";
-            Connection C = DriverManager.getConnection(url,"Healthcare","Healthcare");
+            Connection C = DriverManager.getConnection(url,"sa","sa");
        
             user = UserName.getText();
             String pwd = PassWord.getText();
