@@ -21,7 +21,7 @@ insights under four different categories as mentioned below
 would warn them against the possible health conditions that they are likely to
 receive in the upcoming years.
 
- -We are currently witnessing rapid advances in information communication
+ - We are currently witnessing rapid advances in information communication
 technologies. It is a well-known fact that the implementation and deployment of
 these technologies in the health-care sector bring about significant benefits
 (affordable health care, cost-efficient health services, and many others) to all
