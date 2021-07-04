@@ -17,17 +17,17 @@ insights under four different categories as mentioned below
 3. Suggestions
 4. Cure
 
--They would be tested under common conditions like obesity and much more and
+- They would be tested under common conditions like obesity and much more and
 would warn them against the possible health conditions that they are likely to
 receive in the upcoming years.
 
--We are currently witnessing rapid advances in information communication
+ -We are currently witnessing rapid advances in information communication
 technologies. It is a well-known fact that the implementation and deployment of
 these technologies in the health-care sector bring about significant benefits
 (affordable health care, cost-efficient health services, and many others) to all
 health-care stakeholders.
 
--This tool could save the lives of the million and would create awareness amongst
+- This tool could save the lives of the million and would create awareness amongst
 the commoners who are suffering from these health conditions.
 People can track for COVID - 19 at their locations and check their health status.
 You can get instant results by checking your symptoms in a smart diagnosis
